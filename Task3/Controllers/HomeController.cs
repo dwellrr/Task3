@@ -18,9 +18,7 @@ namespace Task3.Controllers
 
         public IActionResult Index()
         {
-            var stopwatchModel = new Models.Stopwatch();
-            // Perform any additional setup if needed
-            return View(stopwatchModel);
+            return View();
         }
 
         public IActionResult Privacy()

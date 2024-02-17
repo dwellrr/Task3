@@ -11,7 +11,6 @@ using Task3.Models;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddPredictionEnginePool<MLModel.ModelInput, MLModel.ModelOutput>()
     .FromFile("MLModel.mlnet");
-builder.Services.AddSingleton<Stopwatch>();
 
 builder.Services.AddEndpointsApiExplorer();
 // Add services to the container.
