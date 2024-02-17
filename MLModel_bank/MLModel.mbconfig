@@ -1,0 +1,875 @@
+﻿{
+  "Scenario": "Classification",
+  "DataSource": {
+    "Type": "TabularFile",
+    "Version": 1,
+    "FilePath": "C:\\Users\\Stran\\Desktop\\nerd_shit\\uni\\uni-net\\Task3\\bank-full-all.csv",
+    "Delimiter": ",",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "age",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "job",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "marital",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "education",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "default",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Boolean",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "balance",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "housing",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Boolean",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "loan",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Boolean",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "contact",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "day",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "month",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "campaign",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "pdays",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "previous",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "poutcome",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "y",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      }
+    ]
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 3,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastForestOva",
+        "Score": 0.89462032322337837,
+        "RuntimeInSeconds": 1.151,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e6 * e12",
+          "e0": {
+            "OutputColumnNames": [
+              "marital",
+              "education",
+              "default",
+              "housing",
+              "loan",
+              "contact",
+              "month",
+              "poutcome"
+            ],
+            "InputColumnNames": [
+              "marital",
+              "education",
+              "default",
+              "housing",
+              "loan",
+              "contact",
+              "month",
+              "poutcome"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "age",
+              "balance",
+              "day",
+              "campaign",
+              "pdays",
+              "previous"
+            ],
+            "InputColumnNames": [
+              "age",
+              "balance",
+              "day",
+              "campaign",
+              "pdays",
+              "previous"
+            ]
+          },
+          "e12": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "InputColumnName": "job",
+            "OutputColumnName": "job"
+          },
+          "e3": {
+            "InputColumnNames": [
+              "marital",
+              "education",
+              "default",
+              "housing",
+              "loan",
+              "contact",
+              "month",
+              "poutcome",
+              "age",
+              "balance",
+              "day",
+              "campaign",
+              "pdays",
+              "previous",
+              "job"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e4": {
+            "OutputColumnName": "y",
+            "InputColumnName": "y",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e6": {
+            "NumberOfTrees": 5,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e10": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e11": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e5": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 1.0,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 1.0,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e9": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastForestOva",
+        "Score": 0.89450963028558783,
+        "RuntimeInSeconds": 1.072,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e6 * e12",
+          "e0": {
+            "OutputColumnNames": [
+              "marital",
+              "education",
+              "default",
+              "housing",
+              "loan",
+              "contact",
+              "month",
+              "poutcome"
+            ],
+            "InputColumnNames": [
+              "marital",
+              "education",
+              "default",
+              "housing",
+              "loan",
+              "contact",
+              "month",
+              "poutcome"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "age",
+              "balance",
+              "day",
+              "campaign",
+              "pdays",
+              "previous"
+            ],
+            "InputColumnNames": [
+              "age",
+              "balance",
+              "day",
+              "campaign",
+              "pdays",
+              "previous"
+            ]
+          },
+          "e12": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "InputColumnName": "job",
+            "OutputColumnName": "job"
+          },
+          "e3": {
+            "InputColumnNames": [
+              "marital",
+              "education",
+              "default",
+              "housing",
+              "loan",
+              "contact",
+              "month",
+              "poutcome",
+              "age",
+              "balance",
+              "day",
+              "campaign",
+              "pdays",
+              "previous",
+              "job"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e4": {
+            "OutputColumnName": "y",
+            "InputColumnName": "y",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e6": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e10": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e11": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e5": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 1.0,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 1.0,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e9": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastForestOva",
+        "Score": 0.89450963028558783,
+        "RuntimeInSeconds": 1.049,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e6 * e12",
+          "e0": {
+            "OutputColumnNames": [
+              "marital",
+              "education",
+              "default",
+              "housing",
+              "loan",
+              "contact",
+              "month",
+              "poutcome"
+            ],
+            "InputColumnNames": [
+              "marital",
+              "education",
+              "default",
+              "housing",
+              "loan",
+              "contact",
+              "month",
+              "poutcome"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "age",
+              "balance",
+              "day",
+              "campaign",
+              "pdays",
+              "previous"
+            ],
+            "InputColumnNames": [
+              "age",
+              "balance",
+              "day",
+              "campaign",
+              "pdays",
+              "previous"
+            ]
+          },
+          "e12": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "InputColumnName": "job",
+            "OutputColumnName": "job"
+          },
+          "e3": {
+            "InputColumnNames": [
+              "marital",
+              "education",
+              "default",
+              "housing",
+              "loan",
+              "contact",
+              "month",
+              "poutcome",
+              "age",
+              "balance",
+              "day",
+              "campaign",
+              "pdays",
+              "previous",
+              "job"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e4": {
+            "OutputColumnName": "y",
+            "InputColumnName": "y",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e6": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 35,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e10": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e11": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e5": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 1.0,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 1.0,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e9": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastForestOva",
+        "Score": 0.89439893734779718,
+        "RuntimeInSeconds": 1.26,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e6 * e12",
+          "e0": {
+            "OutputColumnNames": [
+              "marital",
+              "education",
+              "default",
+              "housing",
+              "loan",
+              "contact",
+              "month",
+              "poutcome"
+            ],
+            "InputColumnNames": [
+              "marital",
+              "education",
+              "default",
+              "housing",
+              "loan",
+              "contact",
+              "month",
+              "poutcome"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "age",
+              "balance",
+              "day",
+              "campaign",
+              "pdays",
+              "previous"
+            ],
+            "InputColumnNames": [
+              "age",
+              "balance",
+              "day",
+              "campaign",
+              "pdays",
+              "previous"
+            ]
+          },
+          "e12": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "InputColumnName": "job",
+            "OutputColumnName": "job"
+          },
+          "e3": {
+            "InputColumnNames": [
+              "marital",
+              "education",
+              "default",
+              "housing",
+              "loan",
+              "contact",
+              "month",
+              "poutcome",
+              "age",
+              "balance",
+              "day",
+              "campaign",
+              "pdays",
+              "previous",
+              "job"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e4": {
+            "OutputColumnName": "y",
+            "InputColumnName": "y",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e6": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 22,
+            "FeatureFraction": 0.7956708,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e10": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e11": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e5": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 1.0,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 1.0,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e9": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastForestOva",
+        "Score": 0.893402700907682,
+        "RuntimeInSeconds": 1.264,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e6 * e12",
+          "e0": {
+            "OutputColumnNames": [
+              "marital",
+              "education",
+              "default",
+              "housing",
+              "loan",
+              "contact",
+              "month",
+              "poutcome"
+            ],
+            "InputColumnNames": [
+              "marital",
+              "education",
+              "default",
+              "housing",
+              "loan",
+              "contact",
+              "month",
+              "poutcome"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "age",
+              "balance",
+              "day",
+              "campaign",
+              "pdays",
+              "previous"
+            ],
+            "InputColumnNames": [
+              "age",
+              "balance",
+              "day",
+              "campaign",
+              "pdays",
+              "previous"
+            ]
+          },
+          "e12": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "InputColumnName": "job",
+            "OutputColumnName": "job"
+          },
+          "e3": {
+            "InputColumnNames": [
+              "marital",
+              "education",
+              "default",
+              "housing",
+              "loan",
+              "contact",
+              "month",
+              "poutcome",
+              "age",
+              "balance",
+              "day",
+              "campaign",
+              "pdays",
+              "previous",
+              "job"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e4": {
+            "OutputColumnName": "y",
+            "InputColumnName": "y",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e6": {
+            "NumberOfTrees": 15,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e10": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e11": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e5": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 1.0,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 1.0,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          },
+          "e9": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "y",
+            "FeatureColumnName": "Features"
+          }
+        }
+      }
+    ],
+    "Estimators": {
+      "e0": "OneHotEncoding",
+      "e1": "ReplaceMissingValues",
+      "e2": "FeaturizeText",
+      "e3": "Concatenate",
+      "e4": "MapValueToKey",
+      "e5": "FastTreeOva",
+      "e6": "FastForestOva",
+      "e7": "LightGbmMulti",
+      "e8": "LbfgsLogisticRegressionOva",
+      "e9": "LbfgsMaximumEntropyMulti",
+      "e10": "SdcaMaximumEntropyMulti",
+      "e11": "SdcaLogisticRegressionOva",
+      "e12": "MapKeyToValue"
+    },
+    "Schema": "e0 * e1 * e2 * e3 * e4 * (e5 + e6 + e7 + e8 + e9 + e10 + e11) * e12",
+    "MetricName": "MicroAccuracy",
+    "ModelFilePath": "C:\\Users\\Stran\\Desktop\\nerd_shit\\uni\\uni-net\\Task3\\Task3\\Task3\\Models\\MLModel.mlnet"
+  },
+  "Type": "TrainingConfig",
+  "Version": 4,
+  "TrainingOption": {
+    "Version": 1,
+    "Type": "ClassificationTrainingOption",
+    "TrainingTime": 50,
+    "OptimizeMetric": "MicroAccuracy",
+    "LabelColumn": "y",
+    "AvailableTrainers": [
+      "SDCA",
+      "LBFGS",
+      "LGBM",
+      "FASTTREE",
+      "FASTFOREST"
+    ],
+    "ValidationOption": {
+      "Version": 0,
+      "Type": "TrainValidateSplitValidationOption",
+      "SplitRatio": 0.2
+    }
+  }
+}

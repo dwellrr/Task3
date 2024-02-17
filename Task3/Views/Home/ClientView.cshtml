@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Client";
+}
+
+@model Task3.Models.Client
+
+<div class="text-center">
+    <h2>Client Information</h2>
+    <p>Card Number: @Model.CardNumber</p>
+    <p>Name: @Model.Name</p>
+    <p>Surname: @Model.Surname</p>
+    <p>Date of Birth: @Model.DateOfBirth.ToShortDateString()</p>
+
+    <p>Age: @Model.age</p>
+    <p>Job: @Model.job</p>
+    <p>Marital Status: @Model.married</p>
+    <p>Education: @Model.education</p>
+    <p>Default: @Model.def</p>
+    <p>Balance: @Model.balance</p>
+    <p>Housing: @Model.housing</p>
+    <p>Loan: @Model.loan</p>
+    <p>Contact: @Model.contact</p>
+    <p>Day: @Model.day</p>
+    <p>Month: @Model.month</p>
+    <p>Campaign: @Model.campaign</p>
+    <p>Previous Days: @Model.pdays</p>
+    <p>Previous: @Model.previous</p>
+    <p>Previous Outcome: @Model.poutcome</p>
+    <p>Was already called?: @Model.wasCalled</p>
+    <p>Participating in this program?: @Model.isParticipating</p>
+    <form id="evaluateForm">
+        <button type="button" id="evaluateButton" onclick="evaluateCampaignChance()">Evaluate Campaign Chance</button>
+    </form>
+
+    <div id="predictionResults" style="margin-top: 20px;"></div>
+</div>
+
+<script>
+    function evaluateCampaignChance() {
+        var formData = new FormData(document.getElementById("evaluateForm"));
+        formData.append("Id", @Model.Id); // Pass client ID to the server
+
+        fetch('@Url.Action("EvaluateCampaignChance", "Home")', {
+            method: "POST",
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                var resultsContainer = document.getElementById("predictionResults");
+                resultsContainer.innerHTML = "<h3>Evaluation Results</h3>" +
+                    "<p>Most Likely: " + data.predictedLabel + "</p>" +
+                    "<p>Probability of Yes: " + data.score[1].toFixed(2) + "%</p>" +
+                    "<p>Probability of No: " + data.score[0].toFixed(2) + "%</p>";
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    }
+</script>

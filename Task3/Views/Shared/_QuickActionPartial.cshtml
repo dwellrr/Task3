@@ -1,0 +1,24 @@
+﻿
+<div id="quickActionContainer">
+    <button id="quickActionButton" onclick="toggleQuickActionMenu()">
+        <i class="fas fa-plus"></i>
+    </button>
+    <div id="quickActionMenu">
+       
+        <button class="menuOption" >+</button>
+        <button class="menuOption" onclick="navigateTo('Option2')">☎</button>
+        <button class="menuOption" onclick="location.href='@Url.Action("AuditView", "Home")'">🔎</button>
+    </div>
+</div>
+
+<script>
+    function toggleQuickActionMenu() {
+        var menu = document.getElementById('quickActionMenu');
+        menu.classList.toggle('expanded');
+    }
+
+    function navigateTo(option) {
+       
+        console.log('Navigating to ' + option);
+    }
+</script>

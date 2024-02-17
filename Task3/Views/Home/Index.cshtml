@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@using Task3.Models
+@model Stopwatch
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    
+
+    <h2>Stopwatch</h2>
+    <p>Elapsed Time: <span id="elapsedTime">@Model.ElapsedTime.ToString(@"hh\:mm\:ss")</span></p>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<script>
+    function updateElapsedTime() {
+        var elapsedTimeSpan = document.getElementById('elapsedTime');
+        setInterval(function () {
+            // Update the elapsed time every second
+            if (@Model.IsRunning) {
+                // Increment elapsed time
+    @Model.ElapsedTime = @Model.ElapsedTime.Add(TimeSpan.FromSeconds(1));
+            }
+            elapsedTime.innerText = '@Model.ElapsedTime.ToString(@"hh\:mm\:ss")';
+        }, 1000);
+    }
+
+    // Call the function when the page is loaded
+    document.addEventListener('DOMContentLoaded', updateElapsedTime);
+</script>

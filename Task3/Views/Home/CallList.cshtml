@@ -1,0 +1,25 @@
+﻿@model List<ClientCallInfo>
+@using Task3.Helpers
+
+<div>
+    <h2>List of Buttons</h2>
+    <div id="buttonContainer">
+        @foreach (var button in Model)
+        {
+            @Html.TwoByTwoButton(button.Name, (button.wasCalled ? "Was already contacted" : "Not contacted yet"), button.Surname, (button.isParticipating ? "Already Participating" : "Not participating"), "interactive-button", button.Id)
+        }
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var buttons = document.querySelectorAll('.interactive-button');
+
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var buttonId = button.getAttribute('dataid');
+                window.location.href = '@Url.Action("Details", "Home")' + '?id=' + buttonId;
+            });
+        });
+    });
+</script>

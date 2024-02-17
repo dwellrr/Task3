@@ -1,0 +1,30 @@
+﻿@model Task3.Models.ClientCallInfo
+
+@{
+    ViewData["Title"] = "Client Call Information";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Phone Number</th>
+            <th>Was Called</th>
+            <th>Is Participating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Id</td>
+            <td>@Model.Name</td>
+            <td>@Model.Surname</td>
+            <td>@Model.PhoneNumber</td>
+            <td>@(Model.wasCalled ? "Yes" : "No")</td>
+            <td>@(Model.isParticipating ? "Yes" : "No")</td>
+        </tr>
+    </tbody>
+</table>
