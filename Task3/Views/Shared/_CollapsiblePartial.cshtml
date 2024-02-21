@@ -1,0 +1,50 @@
+﻿@model Task3.Models.CollapsibleViewModel
+
+<div class="collapsible-block">
+    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+        <span class="icon">&#x25BC;</span> <!-- Unicode down arrow icon -->
+        <h3>@Model.Title</h3> <!-- Title -->
+    </div>
+    <div class="collapsible-content" style="display: none;">
+        @foreach (var item in Model.Items)
+        {
+            <p>@item.Label: @item.Value</p>
+        }
+    </div>
+</div>
+
+<script>
+    function toggleCollapsible(element) {
+        var content = element.nextElementSibling;
+        content.style.display = (content.style.display === 'none') ? 'block' : 'none';
+        element.querySelector('.icon').innerHTML = (content.style.display === 'none') ? '&#x25BC;' : '&#x25B2;'; // Unicode arrow icon change
+    }
+</script>
+
+<style>
+    .collapsible-block {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .collapsible-header {
+        padding: 10px;
+        cursor: pointer;
+        background-color: #f0f0f0;
+        display: flex; /* Add this line to make its children display in a row */
+        align-items: center; /* Align children vertically in the center */
+    }
+
+    .collapsible-header h3 {
+        margin-left: 5px; /* Add some space between the icon and the title */
+    }
+
+    .collapsible-content {
+        padding: 10px;
+    }
+
+    .icon {
+        margin-right: 5px;
+    }
+</style>

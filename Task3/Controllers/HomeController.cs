@@ -21,6 +21,18 @@ namespace Task3.Controllers
             return View();
         }
 
+        public IActionResult NewClientView()
+        {
+            // Instantiate a new instance of your model
+            var model = new Client();
+
+            // Optionally, set default values for properties if needed
+            model.def = "no";
+
+            // Pass the model to the view
+            return View(model);
+        }
+
         public IActionResult Privacy()
         {
             return View();
@@ -37,7 +49,6 @@ namespace Task3.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        // Assuming you have a method to retrieve client information from a file
         private Client GetClientInfo(string cardNumber)
         {
             // Call the repository to get the specific item
@@ -53,9 +64,7 @@ namespace Task3.Controllers
                 return new Client { Name = "NOTFOUND"};
                 //return NotFound();
             }
-            // Implement logic to read client information from a file
-            // Return a ClientInfo object based on the card number
-            // For simplicity, we'll create a dummy ClientInfo
+
             
         }
 

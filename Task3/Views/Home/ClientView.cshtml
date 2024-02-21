@@ -2,38 +2,63 @@
     ViewData["Title"] = "Client";
 }
 
+@{
+    var collapsibleInfo = new CollapsibleViewModel
+            {
+                Title = "Full Information",
+                Items = new List<CollapsibleItem>
+        {
+            new CollapsibleItem { Label = "Job", Value = Model.job },
+            new CollapsibleItem { Label = "Marital Status", Value = Model.married },
+            new CollapsibleItem { Label = "Education", Value = Model.education },
+            new CollapsibleItem { Label = "Default", Value = Model.def },
+            new CollapsibleItem { Label = "Balance", Value = Model.balance.ToString() },
+            new CollapsibleItem { Label = "Housing", Value = Model.housing },
+            new CollapsibleItem { Label = "Loan", Value = Model.loan },
+            new CollapsibleItem { Label = "Contact", Value = Model.contact },
+            new CollapsibleItem { Label = "Day", Value = Model.day.ToString() },
+            new CollapsibleItem { Label = "Month", Value = Model.month },
+            new CollapsibleItem { Label = "Campaign", Value = Model.campaign.ToString() },
+            new CollapsibleItem { Label = "Previous Days", Value = Model.pdays.ToString()},
+            new CollapsibleItem { Label = "Previous", Value = Model.previous.ToString() },
+            new CollapsibleItem { Label = "Previous Outcome", Value = Model.poutcome },
+            new CollapsibleItem { Label = "Was already called?", Value = Model.wasCalled.ToString() },
+            new CollapsibleItem { Label = "Participating in this program?", Value = Model.isParticipating.ToString() }
+        }
+            };
+
+    var collapsibleContact = new CollapsibleViewModel
+            {
+                Title = "Contact Infomation",
+                Items = new List<CollapsibleItem>
+        {
+            new CollapsibleItem { Label = "Phone Number", Value = Model.PhoneNumber },
+            new CollapsibleItem { Label = "Days after last contact", Value = Model.pdays.ToString()},
+            new CollapsibleItem { Label = "Was already called?", Value = Model.wasCalled.ToString() },
+            new CollapsibleItem { Label = "Participating in this program?", Value = Model.isParticipating.ToString() }
+        }
+            };
+}
+
+
+
 @model Task3.Models.Client
 
 <div class="text-center">
     <h2>Client Information</h2>
-    <p>Card Number: @Model.CardNumber</p>
-    <p>Name: @Model.Name</p>
-    <p>Surname: @Model.Surname</p>
-    <p>Date of Birth: @Model.DateOfBirth.ToShortDateString()</p>
-
-    <p>Age: @Model.age</p>
-    <p>Job: @Model.job</p>
-    <p>Marital Status: @Model.married</p>
-    <p>Education: @Model.education</p>
-    <p>Default: @Model.def</p>
-    <p>Balance: @Model.balance</p>
-    <p>Housing: @Model.housing</p>
-    <p>Loan: @Model.loan</p>
-    <p>Contact: @Model.contact</p>
-    <p>Day: @Model.day</p>
-    <p>Month: @Model.month</p>
-    <p>Campaign: @Model.campaign</p>
-    <p>Previous Days: @Model.pdays</p>
-    <p>Previous: @Model.previous</p>
-    <p>Previous Outcome: @Model.poutcome</p>
-    <p>Was already called?: @Model.wasCalled</p>
-    <p>Participating in this program?: @Model.isParticipating</p>
-    <form id="evaluateForm">
-        <button type="button" id="evaluateButton" onclick="evaluateCampaignChance()">Evaluate Campaign Chance</button>
-    </form>
-
-    <div id="predictionResults" style="margin-top: 20px;"></div>
 </div>
+
+<h2>@Model.Name @Model.Surname</h2>
+<p>Date of Birth: @Model.DateOfBirth.ToShortDateString()</p>
+
+<partial name="_CollapsiblePartial" model="collapsibleContact" />
+<partial name="_CollapsiblePartial" model="collapsibleInfo" />
+
+<form id="evaluateForm">
+    <button type="button" id="evaluateButton" onclick="evaluateCampaignChance()">Evaluate Campaign Chance</button>
+</form>
+
+<div id="predictionResults" style="margin-top: 20px;"></div>
 
 <script>
     function evaluateCampaignChance() {

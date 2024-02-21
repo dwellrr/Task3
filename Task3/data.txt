@@ -5,6 +5,7 @@
     "Name": "John",
     "Surname": "Doe",
     "DateOfBirth": "1980-01-15",
+"PhoneNumber": "123123",
     "age": 32,
     "job": "technician",
     "married": "married",
