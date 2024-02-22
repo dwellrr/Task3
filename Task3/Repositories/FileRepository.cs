@@ -38,7 +38,27 @@ public class FileRepository
         if (existingItem != null)
         {
             existingItem.Name = updatedItem.Name;
-            // Update other properties as needed
+            existingItem.Surname = updatedItem.Surname;
+            existingItem.DateOfBirth = updatedItem.DateOfBirth;
+            existingItem.PhoneNumber = updatedItem.PhoneNumber;
+            existingItem.age = updatedItem.age;
+            existingItem.job = updatedItem.job;
+            existingItem.married = updatedItem.married;
+            existingItem.education = updatedItem.education;
+            existingItem.def = updatedItem.def;
+            existingItem.balance = updatedItem.balance;
+            existingItem.housing = updatedItem.housing;
+            existingItem.loan = updatedItem.loan;
+            //existingItem.contact = updatedItem.contact;
+            //existingItem.day = updatedItem.day;
+            //existingItem.month = updatedItem.month;
+            //existingItem.campaign = updatedItem.campaign;
+            //existingItem.pdays = updatedItem.pdays;
+            //existingItem.previous = updatedItem.previous;
+            //existingItem.poutcome = updatedItem.poutcome;
+            //existingItem.wasCalled = updatedItem.wasCalled;
+            //existingItem.isParticipating = updatedItem.isParticipating;
+            //
             SaveDataToFile();
         }
     }

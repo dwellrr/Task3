@@ -22,6 +22,11 @@ namespace Task3.Controllers
             return View();
         }
 
+        public IActionResult ClientView(Client client)
+        {
+            return View(client);
+        }
+
         public IActionResult NewClientView()
         {
             // Instantiate a new instance of your model
@@ -32,6 +37,12 @@ namespace Task3.Controllers
 
             // Pass the model to the view
             return View(model);
+        }
+
+        public IActionResult EditClient(int id) 
+        {
+            Client client = _repository.GetItemById(id);
+            return View(client);
         }
 
         public IActionResult Privacy()
@@ -175,10 +186,10 @@ namespace Task3.Controllers
             return View(info);
         }
 
-        public IActionResult CreateOrEdit(int? id)
-        {
- 
-        }
+        //public IActionResult CreateOrEdit(int? id)
+        //{
+        //
+        //}
 
         [HttpPost]
         public ActionResult Create(Client model)
@@ -221,6 +232,18 @@ namespace Task3.Controllers
             }
 
             // If the model state is not valid, return the view with validation errors
+            return View("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Client client)
+        {
+            if (ModelState.IsValid)
+            {
+                _repository.UpdateItem(client);
+                return RedirectToAction("ClientView", "Home", client);
+            }
+
             return View("Index", "Home");
         }
 

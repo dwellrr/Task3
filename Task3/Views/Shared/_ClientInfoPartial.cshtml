@@ -1,4 +1,43 @@
-﻿
+﻿@{
+    List<SelectListItem> jobList = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Admin", Value = "admin" },
+        new SelectListItem { Text = "Unknown", Value = "unknown" },
+        new SelectListItem { Text = "Unemployed", Value = "unemployed" },
+        new SelectListItem { Text = "Management", Value = "management" },
+        new SelectListItem { Text = "Housemaid", Value = "housemaid" },
+        new SelectListItem { Text = "Entrepreneur", Value = "entrepreneur" },
+        new SelectListItem { Text = "Student", Value = "student" },
+        new SelectListItem { Text = "Blue-collar", Value = "blue-collar" },
+        new SelectListItem { Text = "Self-employed", Value = "self-employed" },
+        new SelectListItem { Text = "Retired", Value = "retired" },
+        new SelectListItem { Text = "Technician", Value = "technician" },
+        new SelectListItem { Text = "Services", Value = "services" }
+    };
+
+    List<SelectListItem> marriedList = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Married", Value = "married" },
+        new SelectListItem { Text = "Divorced", Value = "divorced" },
+        new SelectListItem { Text = "Single", Value = "single" }
+    };
+
+    List<SelectListItem> educationList = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Unknown", Value = "unknown" },
+        new SelectListItem { Text = "Secondary", Value = "secondary" },
+        new SelectListItem { Text = "Primary", Value = "primary" },
+        new SelectListItem { Text = "Tertiary", Value = "tertiary" }
+    };
+
+    List<SelectListItem> contactList = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Unknown", Value = "unknown" },
+        new SelectListItem { Text = "Telephone", Value = "telephone" },
+        new SelectListItem { Text = "Cellular", Value = "cellular" }
+    };
+}
+
 @model Task3.Models.Client;
     <div>
         <div class="form-steps">
@@ -12,17 +51,16 @@
                     <!-- Form for Step 1 -->
                     <h2>Step 1: Personal Information</h2>
                     <!-- Input fields for Step 1 -->
+                @Html.HiddenFor(m => m.Id)
                     <p>Name: @Html.TextBoxFor(m => m.Name)</p>
                     <p>Surname: @Html.TextBoxFor(m => m.Surname)</p>
-                    <p>Date of Birth: @Html.TextBoxFor(m => m.DateOfBirth, new { type = "date" })</p>
+                <p>Date of Birth: @Html.TextBoxFor(m => m.DateOfBirth, "{0:yyyy-MM-dd}", new { type = "date" })</p>
                     <p>Phone Number: @Html.TextBoxFor(m => m.PhoneNumber)</p>
                     <p>Card Number: @Html.TextBoxFor(m => m.CardNumber)</p>
+                <p>
                     <label for="contact">Contact Communication Type:</label>
-                    <select id="contact" name="contact">
-                        <option value="unknown">Unknown</option>
-                        <option value="telephone">Telephone</option>
-                        <option value="cellular">Cellular</option>
-                    </select>
+                    @Html.DropDownListFor(model => model.contact, contactList, new { @id = "contact", @class = "form-control" })
+                </p>
                     <button class="next-step-button" type="button">Next Step</button>
                 </div>
                 <div class="step-form">
@@ -31,71 +69,50 @@
                     <!-- Input fields for Step 2 -->
                     <p>
                         Job:
-                        <select id="job" name="job">
-                            <option value="admin">Admin</option>
-                            <option value="unknown">Unknown</option>
-                            <option value="unemployed">Unemployed</option>
-                            <option value="management">Management</option>
-                            <option value="housemaid">Housemaid</option>
-                            <option value="entrepreneur">Entrepreneur</option>
-                            <option value="student">Student</option>
-                            <option value="blue-collar">Blue-collar</option>
-                            <option value="self-employed">Self-employed</option>
-                            <option value="retired">Retired</option>
-                            <option value="technician">Technician</option>
-                            <option value="services">Services</option>
-                        </select>
+                    @Html.DropDownListFor(model => model.job, jobList, new { @id = "job", @class = "form-control" })
                     </p>
 
                     <p>
                         Marital Status:
-                        <select id="marital" name="married">
-                            <option value="married">Married</option>
-                            <option value="divorced">Divorced</option>
-                            <option value="single">Single</option>
-                        </select>
+                    @Html.DropDownListFor(model => model.married, marriedList, new { @id = "married", @class = "form-control" })
                     </p>
 
                     <p>
                         Education:
-                        <select id="education" name="education">
-                            <option value="unknown">Unknown</option>
-                            <option value="secondary">Secondary</option>
-                            <option value="primary">Primary</option>
-                            <option value="tertiary">Tertiary</option>
-                        </select>
+                    @Html.DropDownListFor(model => model.education, educationList, new { @id = "education", @class = "form-control" })
                     </p>
 
                     <p>
-                        Default:
-                        <input type="radio" id="defaultYes" name="def" value="yes" />
-                        <label for="defaultYes">Yes</label>
-                        <input type="radio" id="defaultNo" name="def" value="no" checked />
-                        <label for="defaultNo">No</label>
+                    Default:
+                    @Html.RadioButtonFor(model => model.def, "yes", new { @id = "defaultYes" })
+                    <label for="defaultYes">Yes</label>
+                    @Html.RadioButtonFor(model => model.def, "no", new { @id = "defaultNo" })
+                    <label for="defaultNo">No</label>
                     </p>
 
-                    <p>
-                        Housing Loan:
-                        <input type="radio" id="housingYes" name="housing" value="yes" />
-                        <label for="housingYes">Yes</label>
-                        <input type="radio" id="housingNo" name="housing" value="no" checked />
-                        <label for="housingNo">No</label>
-                    </p>
+                <p>
+                    Housing Loan:
+                    @Html.RadioButtonFor(model => model.housing, "yes", new { @id = "housingYes" })
+                    <label for="housingYes">Yes</label>
+                    @Html.RadioButtonFor(model => model.housing, "no", new { @id = "housingNo" })
+                    <label for="housingNo">No</label>
+                </p>
 
-                    <p>
-                        Personal Loan:
-                        <input type="radio" id="loanYes" name="loan" value="yes" />
-                        <label for="loanYes">Yes</label>
-                        <input type="radio" id="loanNo" name="loan" value="no" checked />
-                        <label for="loanNo">No</label>
-                    </p>
+
+                <p>
+                    Personal Loan:
+                    @Html.RadioButtonFor(model => model.loan, "yes", new { @id = "loanYes" })
+                    <label for="loanYes">Yes</label>
+                    @Html.RadioButtonFor(model => model.loan, "no", new { @id = "loanNo" })
+                    <label for="loanNo">No</label>
+                </p>
                     <button class="next-step-button" type="button">Next Step</button>
                 </div>
                 <div class="step-form">
                     <!-- Form for Step 3 -->
                     <h2>Step 3: Confirmation</h2>
                     <!-- Input fields for Step 3 -->
-                    <button type="submit" id="submitButton">Create Client</button>
+                    <button type="submit" id="submitButton">Save Client</button>
                 </div>
             </div>
         </div>

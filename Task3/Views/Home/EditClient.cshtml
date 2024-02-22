@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Edit Client";
+}
+
+<h2>Edit Client Information</h2>
+
+
+
+@model Task3.Models.Client;
+@using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { id = "clientForm" }))
+{
+    <partial name="_ClientInfoPartial" />
+
+}
+

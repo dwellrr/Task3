@@ -50,7 +50,7 @@
         <p>Date of Birth: @Model.DateOfBirth.ToShortDateString()</p>
     </div>
     <div>
-        <button>Edit</button>
+        @Html.ActionLink("Edit", "EditClient", new { id = Model.Id }, new { @class = "btn btn-primary" })
     </div>
 </div>
 
