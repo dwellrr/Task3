@@ -1,5 +1,6 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using Task3.Models;
 
@@ -174,7 +175,57 @@ namespace Task3.Controllers
             return View(info);
         }
 
+        public IActionResult CreateOrEdit(int? id)
+        {
+ 
+        }
+
+        [HttpPost]
+        public ActionResult Create(Client model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Extract data from the view model and save it to the database
+                // Example:
+                var client = new Client
+                {
+                    Name = model.Name,
+                    Surname = model.Surname,
+                    DateOfBirth = model.DateOfBirth,
+                    PhoneNumber = model.PhoneNumber,
+                    age = model.age,
+                    job = model.job,
+                    married = model.married,
+                    education = model.education,
+                    def = model.def,
+                    balance = model.balance,
+                    housing = model.housing,
+                    loan = model.loan,
+                    contact = model.contact,
+                    day = DateTime.Now.Day,
+                    month = DateTime.Now.ToString("MMMM"),
+                    campaign = model.campaign,
+                    pdays = model.pdays,
+                    previous = model.previous,
+                    poutcome = model.poutcome,
+                    wasCalled = model.wasCalled,
+                    isParticipating = model.isParticipating
+                };
+
+                // Save the client data to the database
+                // Example:
+                _repository.AddItem(client);
+
+                // Redirect to a success page or perform any other action
+                return View("ClientView", client);
+            }
+
+            // If the model state is not valid, return the view with validation errors
+            return View("Index", "Home");
+        }
+
     }
+
 
 
 

@@ -59,6 +59,8 @@ public class FileRepository
         {
             var json = File.ReadAllText(FilePath);
             items = JsonConvert.DeserializeObject<List<Client>>(json);
+            int maxId = items.Max(client => client.Id);
+            nextId = maxId + 1;
         }
         else
         {

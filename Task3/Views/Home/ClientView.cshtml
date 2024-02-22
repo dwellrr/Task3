@@ -44,12 +44,15 @@
 
 @model Task3.Models.Client
 
-<div class="text-center">
-    <h2>Client Information</h2>
+<div style="display: flex; align-items: center;">
+    <div style="flex-grow: 1;">
+        <h2>@Model.Name @Model.Surname</h2>
+        <p>Date of Birth: @Model.DateOfBirth.ToShortDateString()</p>
+    </div>
+    <div>
+        <button>Edit</button>
+    </div>
 </div>
-
-<h2>@Model.Name @Model.Surname</h2>
-<p>Date of Birth: @Model.DateOfBirth.ToShortDateString()</p>
 
 <partial name="_CollapsiblePartial" model="collapsibleContact" />
 <partial name="_CollapsiblePartial" model="collapsibleInfo" />

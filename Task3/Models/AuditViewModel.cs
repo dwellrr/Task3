@@ -21,12 +21,12 @@ namespace Task3.Models
         public string housing { get; set; }
         public string loan { get; set; }
         public string contact { get; set; }
-        public int day { get; set; }
-        public string month { get; set; }
+        public int day { get; set; } = DateTime.Now.Day;
+        public string month { get; set; } = DateTime.Now.ToString("MMMM");
         public int campaign { get; set; }
         public int pdays { get; set; }
         public int previous { get; set; }
-        public string poutcome {  get; set; }
+        public string poutcome { get; set; } = "unknown";
         public bool wasCalled { get; set; }
         public bool isParticipating { get; set; }
     }
