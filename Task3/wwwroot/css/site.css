@@ -85,3 +85,35 @@ body {
     width: 100%;
     margin: 5px;
 }
+
+
+.step-icons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.step-icon {
+    width: 30px;
+    height: 30px;
+    background-color: gray;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .step-icon.active {
+        background-color: blue; /* Change color for active step */
+    }
+
+.step-form {
+    display: none;
+}
+
+    .step-form.active {
+        display: block;
+    }
