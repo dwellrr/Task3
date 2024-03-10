@@ -24,7 +24,14 @@ namespace Task3.Controllers
 
         public IActionResult ClientView(Client client)
         {
-            return View(client);
+            Client confirmedClient = _repository.GetItemById(client.Id);
+            var viewModel = new ClientCallViewModel
+            {
+                client = confirmedClient,
+                call = new Call()
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult NewClientView()
@@ -32,8 +39,9 @@ namespace Task3.Controllers
             // Instantiate a new instance of your model
             var model = new Client();
 
+            model.DateOfBirth = DateTime.Now;
             // Optionally, set default values for properties if needed
-            model.def = "no";
+            //model.def = "no";
 
             // Pass the model to the view
             return View(model);
@@ -61,10 +69,10 @@ namespace Task3.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        private Client GetClientInfo(string cardNumber)
+        private Client GetClientInfo(string AccountNumber)
         {
             // Call the repository to get the specific item
-            var item = _repository.GetItemByCN(cardNumber);
+            var item = _repository.GetItemByCN(AccountNumber);
 
             if (item != null)
             {
@@ -86,10 +94,23 @@ namespace Task3.Controllers
         public IActionResult SubmitForm(ClientQueryInfo model)
         {
             if (ModelState.IsValid)
+
             {
-                // Fetch additional client information based on the card number
-                Client client = GetClientInfo(model.CardNumber);
-                return View("ClientView", client);
+                Client client = GetClientInfo(model.AccountNumber);
+                if (client.Name == "NOTFOUND")
+                {
+                    TempData["ErrorMessage"] = "Client not found.";
+                    return View("AuditView");
+                }
+                var viewModel = new ClientCallViewModel
+                {
+                    client = client,
+                    call = new Call()
+                };
+
+                // Fetch additional client information based on the Account number
+                
+                return View("ClientView", viewModel);
             }
             else
             {
@@ -228,7 +249,7 @@ namespace Task3.Controllers
                 _repository.AddItem(client);
 
                 // Redirect to a success page or perform any other action
-                return View("ClientView", client);
+                return RedirectToAction("ClientView", "Home", client);
             }
 
             // If the model state is not valid, return the view with validation errors
@@ -245,6 +266,23 @@ namespace Task3.Controllers
             }
 
             return View("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult AddCall(ClientCallViewModel newcall)
+        {
+
+            _repository.AddCall(newcall.client.Id, newcall.call);
+
+            Client client = _repository.GetItemById(newcall.client.Id);
+            return RedirectToAction("ClientView", "Home", client);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteClient(ClientCallViewModel dclient) {
+
+            _repository.DeleteItem(dclient.client.Id);
+            return RedirectToAction("Index", "Home");
         }
 
     }

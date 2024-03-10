@@ -4,26 +4,25 @@
 
 @{
     var collapsibleInfo = new CollapsibleViewModel
-            {
+
+        {
                 Title = "Full Information",
                 Items = new List<CollapsibleItem>
         {
-            new CollapsibleItem { Label = "Job", Value = Model.job },
-            new CollapsibleItem { Label = "Marital Status", Value = Model.married },
-            new CollapsibleItem { Label = "Education", Value = Model.education },
-            new CollapsibleItem { Label = "Default", Value = Model.def },
-            new CollapsibleItem { Label = "Balance", Value = Model.balance.ToString() },
-            new CollapsibleItem { Label = "Housing", Value = Model.housing },
-            new CollapsibleItem { Label = "Loan", Value = Model.loan },
-            new CollapsibleItem { Label = "Contact", Value = Model.contact },
-            new CollapsibleItem { Label = "Day", Value = Model.day.ToString() },
-            new CollapsibleItem { Label = "Month", Value = Model.month },
-            new CollapsibleItem { Label = "Campaign", Value = Model.campaign.ToString() },
-            new CollapsibleItem { Label = "Previous Days", Value = Model.pdays.ToString()},
-            new CollapsibleItem { Label = "Previous", Value = Model.previous.ToString() },
-            new CollapsibleItem { Label = "Previous Outcome", Value = Model.poutcome },
-            new CollapsibleItem { Label = "Was already called?", Value = Model.wasCalled.ToString() },
-            new CollapsibleItem { Label = "Participating in this program?", Value = Model.isParticipating.ToString() }
+            new CollapsibleItem { Label = "Job", Value = Model.client.job },
+            new CollapsibleItem { Label = "Marital Status", Value = Model.client.married },
+            new CollapsibleItem { Label = "Education", Value = Model.client.education },
+            new CollapsibleItem { Label = "Default", Value = Model.client.def },
+            new CollapsibleItem { Label = "Balance", Value = Model.client.balance.ToString() },
+            new CollapsibleItem { Label = "Housing", Value = Model.client.housing },
+            new CollapsibleItem { Label = "Loan", Value = Model.client.loan },
+            new CollapsibleItem { Label = "Contact", Value = Model.client.contact },
+            new CollapsibleItem { Label = "Day", Value = Model.client.day.ToString() },
+            new CollapsibleItem { Label = "Month", Value = Model.client.month },
+            new CollapsibleItem { Label = "Campaign", Value = Model.client.campaign.ToString() },
+            new CollapsibleItem { Label = "Previous Days", Value = Model.client.pdays.ToString()},
+            new CollapsibleItem { Label = "Previous", Value = Model.client.previous.ToString() },
+            new CollapsibleItem { Label = "Previous Outcome", Value = Model.client.poutcome }
         }
             };
 
@@ -32,41 +31,147 @@
                 Title = "Contact Infomation",
                 Items = new List<CollapsibleItem>
         {
-            new CollapsibleItem { Label = "Phone Number", Value = Model.PhoneNumber },
-            new CollapsibleItem { Label = "Days after last contact", Value = Model.pdays.ToString()},
-            new CollapsibleItem { Label = "Was already called?", Value = Model.wasCalled.ToString() },
-            new CollapsibleItem { Label = "Participating in this program?", Value = Model.isParticipating.ToString() }
+            new CollapsibleItem { Label = "Phone Number", Value = Model.client.PhoneNumber },
+            new CollapsibleItem { Label = "Type of phone", Value = Model.client.contact },
+            new CollapsibleItem { Label = "Days after last contact", Value = Model.client.pdays.ToString()},
+            new CollapsibleItem { Label = "Was already called?", Value = Model.client.wasCalled.ToString() },
+            new CollapsibleItem { Label = "Participating in this program?", Value = Model.client.isParticipating.ToString() }
         }
             };
+
+    var collapsibleCamp = new CollapsibleViewModel
+            {
+                Title = "Current Campaign Info",
+                Items = new List<CollapsibleItem>
+        {
+            new CollapsibleItem { Label = "Days since last contact", Value = Model.client.pdays.ToString() },
+            new CollapsibleItem { Label = "Contacted on", Value = Model.client.day.ToString() + " " + Model.client.month.ToString() },
+        }
+            };
+
+    var collapsiblePCamp = new CollapsibleViewModel
+            {
+                Title = "Previous Campaign Info",
+                Items = new List<CollapsibleItem>
+        {
+            new CollapsibleItem { Label = "Was Participating in previous?", Value = Model.client.poutcome.ToString() },
+            new CollapsibleItem { Label = "Number of contacts for previous campaign", Value = Model.client.campaign.ToString() },
+        }
+            };
+
 }
 
 
 
-@model Task3.Models.Client
+@model Task3.Models.ClientCallViewModel
+@using (Html.BeginForm("AddCall", "Home", FormMethod.Post, new { id = "callForm" })) {
+<div style="display: flex; width: 100%; height: auto; margin-bottom: 50px;">
+    <div style="flex: 2; padding: 20px; background-color: #3a4750; color: #dbd8e3;">
+        <div style="display: flex; align-items: center; ">
+            <div style="flex-grow: 1;">
+                <h2>@Model.client.Name @Model.client.Surname</h2>
+                <p>Date of Birth: @Model.client.DateOfBirth.ToShortDateString()</p>
+            </div>
+            <div>
 
-<div style="display: flex; align-items: center;">
-    <div style="flex-grow: 1;">
-        <h2>@Model.Name @Model.Surname</h2>
-        <p>Date of Birth: @Model.DateOfBirth.ToShortDateString()</p>
+
+
+            </div>
+            <div>
+                @Html.ActionLink("Edit", "EditClient", new { id = Model.client.Id }, new { @class = "btn btn-primary", style = "margin: 10px; background-color: #be3144; border: 2px solid #8c1c2a;" })
+            </div>
+        </div>
+
+        <partial name="_CollapsiblePartial" model="collapsibleContact" />
+        <partial name="_CollapsiblePartial" model="collapsibleInfo" />
     </div>
-    <div>
-        @Html.ActionLink("Edit", "EditClient", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    <div style="flex: 3; padding: 20px; background-color: #303841; color: #dbd8e3;">
+        <div style="text-align:center">
+        <h2>Campaign Information</h2>
+                @if (Model.client.isParticipating)
+                {
+                    <p>Already participating</p>
+                    <p>Amount: @Model.client.amount</p>
+                }
+                else
+                {
+                    <p style="color: red;">NOT PARTICIPATING</p>
+                    <!-- Render other fields here -->
+                }
+
+            <partial name="_CollapsiblePartial" model="collapsibleCamp" style="display: block;" />
+            <partial name="_CollapsiblePartial" model="collapsiblePCamp" style="display: block;" />
+        </div>
+        <div class="grid-container">
+            <div class="row">
+                <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                    <button type="button" id="callButton" onclick="toggleVisibility()" class="btn btn-primary" style="margin: 10px; background-color: #be3144; border: 2px solid #8c1c2a;">Call</button>
+                </div>
+                <div id="callDiv" style="display: none;">
+                    
+                    <partial name="_NewCallPartial" model=@Model/>
+                    
+                </div>
+            </div>
+
+        </div>
+       
     </div>
 </div>
+}
 
-<partial name="_CollapsiblePartial" model="collapsibleContact" />
-<partial name="_CollapsiblePartial" model="collapsibleInfo" />
+<div class="row">
+    <div style="display: flex; flex-direction: column; align-items:center;">
+        <form id="evaluateForm">
+            <button type="button" id="evaluateButton" onclick="evaluateCampaignChance()" class="btn btn-primary" style="margin: 10px; background-color: #be3144; border: 2px solid #8c1c2a;">Evaluate Campaign Chance</button>
+        </form>
 
-<form id="evaluateForm">
-    <button type="button" id="evaluateButton" onclick="evaluateCampaignChance()">Evaluate Campaign Chance</button>
+        <div id="predictionResults" style="margin-top: 20px;"></div>
+
+        <!-- Delete button -->
+        <button id="deleteButton">Delete Client</button>
+    </div>
+    
+</div>
+
+
+
+<!-- Delete form -->
+<form id="deleteForm" method="post" action="@Url.Action("DeleteClient", "Home")">
+    @Html.HiddenFor(model => model.client.Id) <!-- Hidden input to store client ID -->
 </form>
 
-<div id="predictionResults" style="margin-top: 20px;"></div>
+<style>
+    .grid-container {
+        display: flex;
+        height: auto; /* Set the container's height to full viewport height */
+    }
+
+    .row {
+        flex: 1; /* Each div takes up an equal amount of space */
+        border: 0px solid black; /* Border for visualization */
+    }
+    
+</style>
 
 <script>
+
+    document.getElementById("deleteButton").addEventListener("click", function () {
+        var confirmation = confirm("Are you sure you want to delete this client? This action is not reversable");
+        if (confirmation) {
+            document.getElementById("deleteForm").submit(); // Submit the form
+        }
+    });
+
+    function toggleVisibility() {
+        var div = document.getElementById("callDiv");
+        // Toggle the visibility
+        div.style.display = (div.style.display === "none") ? "block" : "none";
+    }
+
     function evaluateCampaignChance() {
         var formData = new FormData(document.getElementById("evaluateForm"));
-        formData.append("Id", @Model.Id); // Pass client ID to the server
+        formData.append("Id", @Model.client.Id); // Pass client ID to the server
 
         fetch('@Url.Action("EvaluateCampaignChance", "Home")', {
             method: "POST",
@@ -78,8 +183,8 @@
                 var resultsContainer = document.getElementById("predictionResults");
                 resultsContainer.innerHTML = "<h3>Evaluation Results</h3>" +
                     "<p>Most Likely: " + data.predictedLabel + "</p>" +
-                    "<p>Probability of Yes: " + data.score[1].toFixed(2) + "%</p>" +
-                    "<p>Probability of No: " + data.score[0].toFixed(2) + "%</p>";
+                    "<p>Probability of Yes: " + data.score[1].toFixed(2) + "</p>" +
+                    "<p>Probability of No: " + data.score[0].toFixed(2) + "</p>";
             })
             .catch(error => {
                 console.error("Error:", error);

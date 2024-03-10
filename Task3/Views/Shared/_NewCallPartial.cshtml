@@ -1,0 +1,82 @@
+﻿@model Task3.Models.ClientCallViewModel;
+
+<div>
+
+    @Html.HiddenFor(m => m.client.Id)
+    <!-- 1. Duration field -->
+    @Html.LabelFor(m => m.call.durationh, "Duration:")
+    @Html.TextBoxFor(m => m.call.durationh, new { style = "width: 50px;", placeholder = "hr", required = "required" })
+    @Html.TextBoxFor(m => m.call.durationm, new { style = "width: 50px;", placeholder = "min", required = "required" })
+    @Html.TextBoxFor(m => m.call.durations, new { style = "width: 50px;", placeholder = "sec", required = "required" })
+    <p></p>
+
+    <!-- 2. Outcome radio box -->
+    <label>Outcome:</label>
+    <label>@Html.RadioButtonFor(m => m.call.outcome, "success", new { id = "call_outcome_success" }) Success</label>
+    <label>@Html.RadioButtonFor(m => m.call.outcome, "failure", new { id = "call_outcome_failure" }) Failure</label>
+    <p></p>
+
+    <!-- 3. Amount of money text field -->
+    <label for="amount">Amount:</label>
+    @Html.TextBoxFor(m => m.call.amount, new { @class = "form-control", placeholder = "Enter amount", required = "required" })
+    <p></p>
+
+    <!-- 4. Date field -->
+    <label>Date:</label>
+    @Html.TextBoxFor(m => m.call.date, "{0:yyyy-MM-dd}", new { type = "date" })
+    <p></p>
+
+    <!-- Submit button -->
+    <button type="submit" id="submitCallButton">Submit</button>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const submitCallButton = document.getElementById("submitCallButton");
+
+        submitCallButton.addEventListener('click', function (event) {
+            var isValid = validateForm();
+            if (!isValid) {
+                event.preventDefault(); // Prevent default form submission
+                alert("Form not valid :[");
+            }
+        });
+    });
+
+    function validateForm() {
+        // Duration validation
+        var durationh = document.getElementById('call_durationh').value;
+        var durationm = document.getElementById('call_durationm').value;
+        var durations = document.getElementById('call_durations').value;
+        if (durationh === '' || durationm === '' || durations === '') {
+            alert('Please fill in all duration fields.');
+            return false;
+        }
+
+        // Outcome validation
+        var success = document.getElementById('call_outcome_success').checked;
+        var failure = document.getElementById('call_outcome_failure').checked;
+        if (!success && !failure) {
+            alert('Please select an outcome.');
+            return false;
+        }
+
+        // Amount validation
+        var amount = document.getElementById('call_amount').value;
+        if (amount === '') {
+            alert('Please enter the amount.');
+            return false;
+        }
+
+        // Date validation (optional)
+        var date = document.getElementById('call_date').value;
+        if (date === '') {
+            alert('Please enter a date.');
+            return false;
+        }
+
+        return true; // Allow form submission
+    }
+</script>

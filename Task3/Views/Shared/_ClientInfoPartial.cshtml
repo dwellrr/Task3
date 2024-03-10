@@ -56,7 +56,7 @@
                     <p>Surname: @Html.TextBoxFor(m => m.Surname)</p>
                 <p>Date of Birth: @Html.TextBoxFor(m => m.DateOfBirth, "{0:yyyy-MM-dd}", new { type = "date" })</p>
                     <p>Phone Number: @Html.TextBoxFor(m => m.PhoneNumber)</p>
-                    <p>Card Number: @Html.TextBoxFor(m => m.CardNumber)</p>
+                    <p>Account Number: @Html.TextBoxFor(m => m.AccountNumber)</p>
                 <p>
                     <label for="contact">Contact Communication Type:</label>
                     @Html.DropDownListFor(model => model.contact, contactList, new { @id = "contact", @class = "form-control" })
@@ -191,7 +191,8 @@
             });
         });
 
-        function validateCurrentStep(currentStepDiv) {
+        function validateCurrentStep(currentStepDiv) 
+        {
             const inputs = currentStepDiv.querySelectorAll("input, select, textarea");
 
             // Check if all inputs within the current step are filled

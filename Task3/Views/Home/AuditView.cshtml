@@ -8,9 +8,9 @@
 
 <form asp-action="SubmitForm" method="post">
     <div>
-        <label asp-for="CardNumber">Card Number:</label>
-        <input asp-for="CardNumber" />
-        <span asp-validation-for="CardNumber"></span>
+        <label asp-for="AccountNumber">Account Number:</label>
+        <input asp-for="AccountNumber" />
+        <span asp-validation-for="AccountNumber"></span>
     </div>
     <div>
         <label asp-for="Name">Name:</label>
@@ -32,7 +32,12 @@
     </div>
 </form>
 
-
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        alert('@TempData["ErrorMessage"]');
+    </script>
+}
 
 
 @if (Model != null)

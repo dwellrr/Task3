@@ -4439,7 +4439,7 @@ textarea.form-control-lg {
   color: #fff;
 }
 
-.card {
+.Account {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -4450,83 +4450,83 @@ textarea.form-control-lg {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
 }
-.card > hr {
+.Account > hr {
   margin-left: 0;
   margin-right: 0;
 }
-.card > .list-group {
+.Account > .list-group {
   border-top: inherit;
   border-bottom: inherit;
 }
-.card > .list-group:first-child {
+.Account > .list-group:first-child {
   border-top-width: 0;
   border-top-right-radius: calc(0.25rem - 1px);
   border-top-left-radius: calc(0.25rem - 1px);
 }
-.card > .list-group:last-child {
+.Account > .list-group:last-child {
   border-bottom-width: 0;
   border-bottom-left-radius: calc(0.25rem - 1px);
   border-bottom-right-radius: calc(0.25rem - 1px);
 }
-.card > .card-header + .list-group,
-.card > .list-group + .card-footer {
+.Account > .Account-header + .list-group,
+.Account > .list-group + .Account-footer {
   border-top: 0;
 }
 
-.card-body {
+.Account-body {
   flex: 1 1 auto;
   padding: 1rem 1rem;
 }
 
-.card-title {
+.Account-title {
   margin-bottom: 0.5rem;
 }
 
-.card-subtitle {
+.Account-subtitle {
   margin-top: -0.25rem;
   margin-bottom: 0;
 }
 
-.card-text:last-child {
+.Account-text:last-child {
   margin-bottom: 0;
 }
 
-.card-link + .card-link {
+.Account-link + .Account-link {
   margin-right: 1rem;
 }
 
-.card-header {
+.Account-header {
   padding: 0.5rem 1rem;
   margin-bottom: 0;
   background-color: rgba(0, 0, 0, 0.03);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
-.card-header:first-child {
+.Account-header:first-child {
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
 }
 
-.card-footer {
+.Account-footer {
   padding: 0.5rem 1rem;
   background-color: rgba(0, 0, 0, 0.03);
   border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
-.card-footer:last-child {
+.Account-footer:last-child {
   border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
 }
 
-.card-header-tabs {
+.Account-header-tabs {
   margin-left: -0.5rem;
   margin-bottom: -0.5rem;
   margin-right: -0.5rem;
   border-bottom: 0;
 }
 
-.card-header-pills {
+.Account-header-pills {
   margin-left: -0.5rem;
   margin-right: -0.5rem;
 }
 
-.card-img-overlay {
+.Account-img-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -4536,62 +4536,62 @@ textarea.form-control-lg {
   border-radius: calc(0.25rem - 1px);
 }
 
-.card-img,
-.card-img-top,
-.card-img-bottom {
+.Account-img,
+.Account-img-top,
+.Account-img-bottom {
   width: 100%;
 }
 
-.card-img,
-.card-img-top {
+.Account-img,
+.Account-img-top {
   border-top-right-radius: calc(0.25rem - 1px);
   border-top-left-radius: calc(0.25rem - 1px);
 }
 
-.card-img,
-.card-img-bottom {
+.Account-img,
+.Account-img-bottom {
   border-bottom-left-radius: calc(0.25rem - 1px);
   border-bottom-right-radius: calc(0.25rem - 1px);
 }
 
-.card-group > .card {
+.Account-group > .Account {
   margin-bottom: 0.75rem;
 }
 @media (min-width: 576px) {
-  .card-group {
+  .Account-group {
     display: flex;
     flex-flow: row wrap;
   }
-  .card-group > .card {
+  .Account-group > .Account {
     flex: 1 0 0%;
     margin-bottom: 0;
   }
-  .card-group > .card + .card {
+  .Account-group > .Account + .Account {
     margin-right: 0;
     border-right: 0;
   }
-  .card-group > .card:not(:last-child) {
+  .Account-group > .Account:not(:last-child) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
-  .card-group > .card:not(:last-child) .card-img-top,
-.card-group > .card:not(:last-child) .card-header {
+  .Account-group > .Account:not(:last-child) .Account-img-top,
+.Account-group > .Account:not(:last-child) .Account-header {
     border-top-left-radius: 0;
   }
-  .card-group > .card:not(:last-child) .card-img-bottom,
-.card-group > .card:not(:last-child) .card-footer {
+  .Account-group > .Account:not(:last-child) .Account-img-bottom,
+.Account-group > .Account:not(:last-child) .Account-footer {
     border-bottom-left-radius: 0;
   }
-  .card-group > .card:not(:first-child) {
+  .Account-group > .Account:not(:first-child) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
-  .card-group > .card:not(:first-child) .card-img-top,
-.card-group > .card:not(:first-child) .card-header {
+  .Account-group > .Account:not(:first-child) .Account-img-top,
+.Account-group > .Account:not(:first-child) .Account-header {
     border-top-right-radius: 0;
   }
-  .card-group > .card:not(:first-child) .card-img-bottom,
-.card-group > .card:not(:first-child) .card-footer {
+  .Account-group > .Account:not(:first-child) .Account-img-bottom,
+.Account-group > .Account:not(:first-child) .Account-footer {
     border-bottom-right-radius: 0;
   }
 }

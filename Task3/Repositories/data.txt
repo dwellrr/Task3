@@ -1,7 +1,7 @@
 [
   {
     "Id": 1,
-    "CardNumber": "1234567890123456",
+    "AccountNumber": "1234567890123456",
     "Name": "John",
     "Surname": "Doe",
     "DateOfBirth": "1980-01-15",
@@ -23,7 +23,7 @@
   },
   {
     "Id": 2,
-    "CardNumber": "9876543210987654",
+    "AccountNumber": "9876543210987654",
     "Name": "Jane",
     "Surname": "Smith",
     "DateOfBirth": "1992-05-23",
@@ -45,7 +45,7 @@
   },
   {
     "Id": 3,
-    "CardNumber": "5678123409871234",
+    "AccountNumber": "5678123409871234",
     "Name": "Alice",
     "Surname": "Johnson",
     "DateOfBirth": "1985-11-08",
@@ -67,7 +67,7 @@
   },
   {
     "Id": 4,
-    "CardNumber": "1111111111111111",
+    "AccountNumber": "1111111111111111",
     "Name": "Tom",
     "Surname": "Brady",
     "DateOfBirth": "1987-11-08",

@@ -17,10 +17,10 @@ public class FileRepository
         return items.FirstOrDefault(item => item.Id == id);
     }
 
-    public Client GetItemByCN(string cardNum)
+    public Client GetItemByCN(string AccountNum)
     {
         LoadDataFromFile();
-        return items.FirstOrDefault(item => item.CardNumber == cardNum);
+        return items.FirstOrDefault(item => item.AccountNumber == AccountNum);
     }
 
     public void AddItem(Client item)
@@ -49,15 +49,27 @@ public class FileRepository
             existingItem.balance = updatedItem.balance;
             existingItem.housing = updatedItem.housing;
             existingItem.loan = updatedItem.loan;
+            //
+            SaveDataToFile();
+        }
+    }
+
+    public void UpdateItemCall(Client updatedItem)
+    {
+        LoadDataFromFile();
+        var existingItem = items.FirstOrDefault(item => item.Id == updatedItem.Id);
+        if (existingItem != null)
+        {
             //existingItem.contact = updatedItem.contact;
-            //existingItem.day = updatedItem.day;
-            //existingItem.month = updatedItem.month;
-            //existingItem.campaign = updatedItem.campaign;
+            existingItem.day = updatedItem.day;
+            existingItem.month = updatedItem.month;
+            existingItem.campaign = updatedItem.campaign;
             //existingItem.pdays = updatedItem.pdays;
             //existingItem.previous = updatedItem.previous;
             //existingItem.poutcome = updatedItem.poutcome;
-            //existingItem.wasCalled = updatedItem.wasCalled;
-            //existingItem.isParticipating = updatedItem.isParticipating;
+            existingItem.wasCalled = updatedItem.wasCalled;
+            existingItem.isParticipating = updatedItem.isParticipating;
+            existingItem.duration = updatedItem.duration;
             //
             SaveDataToFile();
         }
@@ -68,6 +80,30 @@ public class FileRepository
         LoadDataFromFile();
         items.RemoveAll(item => item.Id == id);
         SaveDataToFile();
+    }
+
+    public void AddCall(int id, Call newcall)
+    {
+        Client clientToUpdate = GetItemById(id);
+        clientToUpdate.day = newcall.date.Day;
+        string[] months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+        clientToUpdate.month = months[newcall.date.Month -1];
+        clientToUpdate.campaign += 1;
+        clientToUpdate.wasCalled = true;
+        int durationInSec = newcall.durationh * 3600 + newcall.durationm * 60 + newcall.durations;
+        clientToUpdate.duration = durationInSec;
+
+        if (newcall.outcome == "success")
+        {
+            clientToUpdate.isParticipating = true;
+                }
+        else
+        {
+            clientToUpdate.isParticipating = false;
+        }
+
+        UpdateItemCall(clientToUpdate);
+
     }
 
     private List<Client> items = new List<Client>();
